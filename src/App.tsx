@@ -1,3 +1,4 @@
+// Triggering GitHub Sync - Testing Action Deployment
 import { useState, useCallback, useEffect } from 'react';
 import { THEMES, Settings, FileEntry } from './types';
 import { useNotes } from './hooks/useNotes';
