@@ -50,7 +50,9 @@ export default function StatusBar({ note, theme, settings, cursorLine, cursorCol
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 0, overflow: 'hidden' }}>
-        <span style={{ color: theme.accent, fontWeight: 700, fontSize: 11, marginRight: 8, whiteSpace: 'nowrap' }}>✦ LofiPad</span>
+        <span style={{ color: theme.text, fontWeight: 700, fontSize: 11, marginRight: 8, whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 3 }}>
+          lofipad <span style={{ color: '#ff4444' }}>✦</span>
+        </span>
         <span style={{ color: theme.textFaint, fontSize: 11, whiteSpace: 'nowrap' }}>{theme.emoji} {theme.label}</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 0, overflow: 'hidden', flexShrink: 0 }}>

@@ -53,8 +53,6 @@ export interface Theme {
   shadow: string;
   lineNum: string;
   selectionBg: string;
-  indentGuide: string;
-  indentGuideActive: string;
   currentLineBg: string;
 }
 
@@ -74,7 +72,6 @@ export interface Settings {
   letterSpacing: number;
   editorWidth: 'narrow' | 'medium' | 'wide' | 'full';
   highlightCurrentLine: boolean;
-  showIndentGuides: boolean;
   cursorStyle: 'bar' | 'block' | 'underline';
   sidebarWidth: number;
   paragraphSpacing: number;
@@ -123,8 +120,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.5)',
     lineNum: '#4a4a6a',
     selectionBg: '#e9456030',
-    indentGuide: '#2a2a4a',
-    indentGuideActive: '#e9456050',
     currentLineBg: '#ffffff06',
   },
   {
@@ -148,8 +143,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.12)',
     lineNum: '#b0aba5',
     selectionBg: '#c0392b20',
-    indentGuide: '#d5d0ca',
-    indentGuideActive: '#c0392b40',
     currentLineBg: '#00000005',
   },
   {
@@ -173,8 +166,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.7)',
     lineNum: '#404040',
     selectionBg: '#7c6af730',
-    indentGuide: '#252525',
-    indentGuideActive: '#7c6af760',
     currentLineBg: '#ffffff04',
   },
   {
@@ -198,8 +189,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.4)',
     lineNum: '#4a6a48',
     selectionBg: '#5dba4030',
-    indentGuide: '#2a3a28',
-    indentGuideActive: '#5dba4060',
     currentLineBg: '#ffffff05',
   },
   {
@@ -223,8 +212,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.5)',
     lineNum: '#3a5a7a',
     selectionBg: '#00b4d830',
-    indentGuide: '#1a2e4a',
-    indentGuideActive: '#00b4d860',
     currentLineBg: '#ffffff05',
   },
   {
@@ -248,8 +235,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.4)',
     lineNum: '#6a4040',
     selectionBg: '#ff6b3530',
-    indentGuide: '#3a2020',
-    indentGuideActive: '#ff6b3560',
     currentLineBg: '#ffffff05',
   },
   {
@@ -273,8 +258,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.08)',
     lineNum: '#c0bdb8',
     selectionBg: '#2563eb20',
-    indentGuide: '#dedbd5',
-    indentGuideActive: '#2563eb40',
     currentLineBg: '#00000004',
   },
   {
@@ -298,8 +281,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.4)',
     lineNum: '#4c566a',
     selectionBg: '#88c0d030',
-    indentGuide: '#3b4252',
-    indentGuideActive: '#88c0d060',
     currentLineBg: '#ffffff05',
   },
   {
@@ -323,8 +304,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.4)',
     lineNum: '#6272a4',
     selectionBg: '#ff79c630',
-    indentGuide: '#3d3f4f',
-    indentGuideActive: '#ff79c660',
     currentLineBg: '#ffffff05',
   },
   {
@@ -348,8 +327,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.4)',
     lineNum: '#524f67',
     selectionBg: '#ebbcba30',
-    indentGuide: '#2a2742',
-    indentGuideActive: '#ebbcba50',
     currentLineBg: '#ffffff05',
   },
   {
@@ -373,8 +350,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.4)',
     lineNum: '#405060',
     selectionBg: '#268bd230',
-    indentGuide: '#073642',
-    indentGuideActive: '#268bd260',
     currentLineBg: '#ffffff04',
   },
   {
@@ -398,8 +373,6 @@ export const THEMES: Theme[] = [
     shadow: '0 8px 32px rgba(0,0,0,0.4)',
     lineNum: '#75715e',
     selectionBg: '#a6e22e30',
-    indentGuide: '#3e3d32',
-    indentGuideActive: '#a6e22e60',
     currentLineBg: '#ffffff04',
   },
 ];
@@ -420,7 +393,6 @@ export const DEFAULT_SETTINGS: Settings = {
   letterSpacing: 0,
   editorWidth: 'wide',
   highlightCurrentLine: true,
-  showIndentGuides: true,
   cursorStyle: 'bar',
   sidebarWidth: 260,
   paragraphSpacing: 0,

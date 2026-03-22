@@ -8,7 +8,7 @@ import {
   Copy, Scissors, ClipboardPaste, Strikethrough,
   RotateCcw, RotateCw, CaseSensitive,
   Heading, Link, Link2Off, List, ListOrdered,
-  Eraser, Image as ImageIcon,
+  Eraser, Image as ImageIcon, MonitorDown,
 } from 'lucide-react';
 
 interface Props {
@@ -341,6 +341,7 @@ export default function Toolbar({
         <Sep />
         <Btn onClick={onImport} title="Import file as note"><Upload size={13} /></Btn>
         <Btn onClick={onExport} title="Export as .txt"><Download size={13} /></Btn>
+        <Btn onClick={() => window.open('/releases', '_blank')} title="Download desktop app"><MonitorDown size={13} /></Btn>
         <Sep />
         <Btn onClick={onToggleFocus} active={settings.focusMode} title="Focus mode">
           {settings.focusMode ? <Maximize2 size={13} /> : <Minimize2 size={13} />}

@@ -271,9 +271,6 @@ export default function SettingsPanel({ theme, settings, onSettingsChange, onClo
           <Row label="Highlight Current Line">
             <Toggle val={settings.highlightCurrentLine} onChange={v => onSettingsChange({ highlightCurrentLine: v })} />
           </Row>
-          <Row label="Indent Guides" hint="VS Code-style vertical lines">
-            <Toggle val={settings.showIndentGuides} onChange={v => onSettingsChange({ showIndentGuides: v })} />
-          </Row>
           <Row label="Cursor Style">
             <Select
               val={settings.cursorStyle}

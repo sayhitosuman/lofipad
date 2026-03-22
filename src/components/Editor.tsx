@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, useState, useMemo, ReactNode } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import { Theme, Settings } from '../types';
 
 interface Props {
@@ -106,47 +106,8 @@ export default function Editor({ content, onChange, theme, settings, onCursorCha
   const PADDING_LEFT = 20;
   const PADDING_TOP = 12;
 
-  // Approximate monospace character width mapping
-  const charWidth = fontSize * 0.6;
-  const indentWidthPx = charWidth * settings.tabSize;
 
-  // VS Code accurate Indent Guides layer
-  const vscodeIndentLayer = useMemo(() => {
-    if (!settings.showIndentGuides) return null;
-    const guides: ReactNode[] = [];
-    const htmlLines = content.replace(/(<\/p>|<\/div>|<\/h[1-6]>|<br\s*\/?>)/gi, '\n');
-    let tmp = document.createElement('div');
-    tmp.innerHTML = htmlLines;
-    const textLinesArray = (tmp.textContent || '').split('\n');
-    
-    // Scan each literal line for spacing indents natively applied by Tab key (which spaces using &nbsp; optionally)
-    textLinesArray.forEach((line, i) => {
-      // Map all non-breaking spaces back to real ones to reliably measure indents
-      const cleanLine = line.replace(/\u00A0/g, ' '); 
-      const leadingSpaces = cleanLine.match(/^ +/);
-      if (leadingSpaces) {
-        const spaceCount = leadingSpaces[0].length;
-        const indentsCount = Math.floor(spaceCount / settings.tabSize);
-        // Render an exact absolute vertical line for each hierarchical tab increment detected exactly like an IDE
-        for (let j = 1; j <= indentsCount; j++) {
-           guides.push(
-             <div key={`${i}-${j}`} style={{
-                position: 'absolute',
-                top: PADDING_TOP + (i * lineHeightPx) - editorScrollTop,
-                left: PADDING_LEFT + (j * indentWidthPx),
-                width: 1,
-                height: lineHeightPx,
-                background: theme.border,
-                opacity: 0.5,
-                pointerEvents: 'none',
-                zIndex: 1
-             }} />
-           );
-        }
-      }
-    });
-    return guides;
-  }, [content, settings.showIndentGuides, settings.tabSize, PADDING_TOP, lineHeightPx, PADDING_LEFT, indentWidthPx, theme.border, editorScrollTop]);
+
 
   // Render Editor component
   return (
@@ -188,8 +149,6 @@ export default function Editor({ content, onChange, theme, settings, onCursorCha
       {/* ── Editor area ── */}
       <div style={{ flex: 1, display: 'flex', justifyContent: 'center', overflow: 'hidden', background: theme.editor, position: 'relative' }}>
         <div style={{ width: '100%', maxWidth, height: '100%', position: 'relative' }}>
-          {/* ── VS Code Exact Leading Indent Guides ── */}
-          {vscodeIndentLayer}
 
           {/* ── Current line highlight ── */}
           {settings.highlightCurrentLine && (

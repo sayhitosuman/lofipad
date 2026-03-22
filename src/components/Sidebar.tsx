@@ -320,8 +320,8 @@ export default function Sidebar({
         {/* ── Header ── */}
         <div style={{ padding: '10px 10px 6px', borderBottom: `1px solid ${theme.border}`, flexShrink: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-            <span style={{ color: theme.accent, fontWeight: 800, fontSize: 14, letterSpacing: -0.5, whiteSpace: 'nowrap' }}>
-              ✦ LofiPad
+            <span style={{ color: theme.text, fontWeight: 800, fontSize: 14, letterSpacing: -0.5, whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 4 }}>
+              lofipad <span style={{ color: '#ff4444' }}>✦</span>
             </span>
             {/* Action buttons */}
             <div style={{ display: 'flex', gap: 4 }}>
