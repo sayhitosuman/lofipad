@@ -7,6 +7,7 @@ import Toolbar from './components/Toolbar';
 import Editor from './components/Editor';
 import StatusBar from './components/StatusBar';
 import SettingsPanel from './components/SettingsPanel';
+import Releases from './components/Releases';
 
 // ── Build file tree from a directory handle ────────────────────────────────────
 async function buildFileTree(
@@ -32,6 +33,9 @@ async function buildFileTree(
 // Store dir handle globally (not in state – not serialisable)
 const win = window as unknown as Record<string, unknown>;
 
+// Check if running in Tauri
+const isTauri = typeof window !== 'undefined' && (window as any).__TAURI__ !== undefined;
+
 export default function App() {
   const { notes, activeNote, activeId, setActiveId, newNote, updateNote, deleteNote, togglePin, duplicateNote } = useNotes();
   const { settings, update } = useSettings();
@@ -47,6 +51,24 @@ export default function App() {
   const [fileTree, setFileTree] = useState<FileEntry[]>([]);
   const [activeFilePath, setActiveFilePath] = useState<string | null>(null);
   const [fileViewContent, setFileViewContent] = useState<string | null>(null);
+  const [view, setView] = useState<'editor' | 'releases'>(
+    window.location.pathname === '/releases' ? 'releases' : 'editor'
+  );
+
+  // Handle URL changes
+  useEffect(() => {
+    const handlePopState = () => {
+      setView(window.location.pathname === '/releases' ? 'releases' : 'editor');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigate = (path: 'editor' | 'releases') => {
+    const url = path === 'releases' ? '/releases' : '/';
+    window.history.pushState({}, '', url);
+    setView(path);
+  };
 
   const theme = THEMES.find(t => t.name === settings.theme) ?? THEMES[0];
 
@@ -227,7 +249,7 @@ export default function App() {
     setFileViewContent(null);
   }, [fileViewContent, activeFilePath, newNote, updateNote]);
 
-  return (
+  const MainApp = (
     <div
       style={{
         display: 'flex', flexDirection: 'column',
@@ -296,6 +318,8 @@ export default function App() {
         onOpenSettings={() => setShowSettings(true)}
         onNewNote={newNote}
         isReadOnly={isViewingFile}
+        isTauri={isTauri}
+        onGoToReleases={() => navigate('releases')}
       />
 
       {/* Main */}
@@ -393,4 +417,10 @@ export default function App() {
       )}
     </div>
   );
+
+  if (view === 'releases') {
+    return <Releases theme={theme} settings={settings} onBack={() => navigate('editor')} />;
+  }
+
+  return MainApp;
 }

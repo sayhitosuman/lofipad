@@ -23,11 +23,14 @@ interface Props {
   onOpenSettings: () => void;
   onNewNote: () => void;
   isReadOnly?: boolean;
+  isTauri?: boolean;
+  onGoToReleases?: () => void;
 }
 
 export default function Toolbar({
   theme, settings, onSettingsChange,
   onExport, onImport, onToggleFocus, noteTitle, onTitleChange, onOpenSettings, isReadOnly,
+  isTauri, onGoToReleases
 }: Props) {
   const [showFonts, setShowFonts] = useState(false);
   const [showSizeInput, setShowSizeInput] = useState(false);
@@ -341,7 +344,11 @@ export default function Toolbar({
         <Sep />
         <Btn onClick={onImport} title="Import file as note"><Upload size={13} /></Btn>
         <Btn onClick={onExport} title="Export as .txt"><Download size={13} /></Btn>
-        <Btn onClick={() => window.open('/releases', '_blank')} title="Download desktop app"><MonitorDown size={13} /></Btn>
+        {!isTauri && (
+          <Btn onClick={() => onGoToReleases?.()} active={window.location.pathname === '/releases'} title="Download desktop app">
+            <MonitorDown size={13} />
+          </Btn>
+        )}
         <Sep />
         <Btn onClick={onToggleFocus} active={settings.focusMode} title="Focus mode">
           {settings.focusMode ? <Maximize2 size={13} /> : <Minimize2 size={13} />}
