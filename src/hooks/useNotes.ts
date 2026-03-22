@@ -35,9 +35,9 @@ export function useNotes() {
     const stored = loadNotes();
     if (stored.length > 0) return stored;
     const first = createNote({
-      title: 'Welcome to LofiPad 🎵',
+      title: 'Welcome to lofipad 🎵',
       content:
-        '# Welcome to LofiPad!\n\nYour notes are saved automatically and will be here when you return.\n\n## Quick tips\n\n- Ctrl+N → New note\n- Ctrl+F → Find & Replace\n- Ctrl+, → Settings\n- Tab / Shift+Tab → Indent / Unindent\n- Right-click notes in sidebar for more options\n\n## Features\n\n  - 12 beautiful themes\n  - 12 fonts to choose from\n  - Drawing canvas\n  - VS Code-style indent guides\n  - Fully offline — everything saved locally\n\nEnjoy writing ✨',
+        '# Welcome to lofipad!\n\nYour notes are saved automatically and will be here when you return.\n\n## Quick tips\n\n- Ctrl+N → New note\n- Ctrl+F → Find & Replace\n- Ctrl+, → Settings\n- Tab / Shift+Tab → Indent / Unindent\n- Right-click notes in sidebar for more options\n\n## Features\n\n  - 12 beautiful themes\n  - 12 fonts to choose from\n  - Drawing canvas\n  - Fully offline — everything saved locally\n\nEnjoy writing ✨',
     });
     return [first];
   });
