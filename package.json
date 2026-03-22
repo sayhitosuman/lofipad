@@ -6,14 +6,10 @@
   "description": "LofiPad — Advanced Offline Notepad",
   "type": "module",
   "homepage": "./",
-  "main": "public/electron.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "electron": "electron .",
-    "electron:dev": "npm run build && electron .",
-    "electron:build": "npm run build && electron-builder"
+    "preview": "vite preview"
   },
   "dependencies": {
     "clsx": "2.1.1",
@@ -30,36 +26,10 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.1",
-    "electron": "^28.3.3",
-    "electron-builder": "^24.13.3",
     "eslint": "^10.1.0",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
     "vite": "7.2.4",
     "vite-plugin-singlefile": "2.3.0"
-  },
-  "build": {
-    "appId": "com.lofipad.app",
-    "productName": "LofiPad",
-    "files": [
-      "dist/**/*",
-      "public/electron.js",
-      "public/preload.js"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    },
-    "win": {
-      "target": [
-        "nsis"
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "LofiPad"
-    }
   }
 }
